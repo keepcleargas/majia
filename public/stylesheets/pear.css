@@ -1,0 +1,84 @@
+body {
+	background: url("/public/images/tile.png") repeat scroll 0 0 #E6EAEC;
+	color: #3E4549;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 100%;
+	padding: 0 0 15px;
+}
+
+table {
+	margin: 0;
+	padding: 0;
+}
+
+table th,table td {
+	padding: 10px 20px;
+	text-align: left;
+	border-bottom: 1px solid #ccc;
+}
+
+table th {
+	border-width: 2px;
+}
+
+table td {
+	color: #666;
+}
+
+table tr:last-child th,table tr:last-child td {
+	border-bottom: none;
+}
+
+table tr:nth-child(even) {
+	background: #eee;
+}
+
+footer {
+	padding: 15px 0 0 0;
+	font-size: 14px;
+	border-top: 1px solid #ddd;
+}
+
+footer p a {
+	color: #333333;
+}
+
+footer p a {
+	margin: 0 10px 0 0;
+	padding: 0 10px 0 0;
+	border-right: 1px solid #ccc;
+}
+footer p a:hover{
+	font-size:150%;
+}
+footer p {
+	margin: 10px 0;
+}
+
+p a {
+	color: #333333;
+}
+
+td a {
+	color: #333333;
+}
+span a{
+	color: #333333;s
+}
+#webContent code a{
+	color: #d14;
+}
+#shareContent code a{
+	color: #d14;
+}
+#shareContent code a:hover{
+	font-size:150%;
+}
+#webContent code a:hover{
+	font-size:150%;
+}
+
+span a:link{text-decoration:none}
+span a:visited{text-decoration:none}
+span a:hover {color: #808080;}
+

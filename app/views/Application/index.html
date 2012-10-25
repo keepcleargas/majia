@@ -1,0 +1,18 @@
+#{extends 'main.html' /} #{set title:'马甲号 -寻找和分享马甲的好去处，跳过注册吧，人人为我，我为人人' /}
+<div class="container">
+	<form name="SearchForm" class="form-horizontal"
+		action="@{Application.search}" accept-charset="utf-8">
+		<legend>
+			<small>寻找和分享马甲吧，让强制注册一边玩去</small>
+		</legend>
+		<fieldset>
+			<div class="input-append">
+				<input class="span5" id="keyword" name="keyword" type="text" placeholder="网址">
+				<button class="btn" type="submit">Go!</button>
+			</div>
+			#{if flash?.error}<span id="SearchError"><code>${flash.error}</code></span>#{/if}
+		</fieldset>
+	</form>
+</div>
+
+

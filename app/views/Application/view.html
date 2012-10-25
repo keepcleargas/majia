@@ -1,0 +1,101 @@
+#{extends 'main.html' /} #{set title:'马甲号 -专搜马甲' /}
+#{script src:"view.js"/}
+<div class="container">
+	<div id="webContent" class="control-group">
+		#{if website}
+		<legend>
+			<small>网站信息 </small>
+		</legend>
+		<p>
+		
+			网站名称:
+			#{if website.webName}
+			<code><a href='http://${website.url}/'>${website.webName}</a></code>
+			#{/if}
+			<br>登录地址:
+			<code><a href='http://${website.url}/'>${website.url}</a></code>
+			<br>描述:${website.description}<br>
+		</p>
+		#{/if} #{else}
+		<p class="muted">
+			您输入网站地址为:
+			<code><a href='http://${keyword}/'>${keyword}</a></code>
+			,本站暂无马甲,<a href="@{application.index}">重新搜索 </a>.不知道如何使用,请点击<a href="@{application.tutorial}">使用帮助 </a>查看帮助.<!-- 前往<a href='http://${keyword}/'>注册</a>,分享马甲吧 -->
+		</p>
+		<br> #{/else}
+	</div>
+	#{if accounts}
+	<table class="table">
+		<tr>
+			<th>帐号</th>
+			<th>密码</th>
+			<th>好评度</th>
+			<th>评价</th>
+		</tr>
+		#{list items:accounts,as:'account'}<tr> #{if account.rate>0.8}
+
+		
+			<td>${account.username}</td>
+			<td>${account.password}</td>
+			<td>★★★★★</td>
+		
+		#{/if} #{if account.rate>0.6&&account.rate<0.8}
+
+			<td>${account.username}</td>
+			<td>${account.password}</td>
+			<td>★★★★</td>
+		#{/if} #{if account.rate>0.4&&account.rate<0.6}
+			<td>${account.username}</td>
+			<td>${account.password}</td>
+			<td>★★★</td>
+		#{/if} #{if account.rate>0.2&&account.rate<0.4}
+
+			<td>${account.username}</td>
+			<td>${account.password}</td>
+			<td>★★</td>
+		#{/if} #{if account.rate>0.0&&account.rate<0.2}
+			<td>${account.username}</td>
+			<td>${account.password}</td>
+			<td>★</td>
+		#{/if} #{if account.rate>0.0&&account.rate==0.2}
+			<td>${account.username}</td>
+			<td>${account.password}</td>
+			<td></td>
+			
+		#{/if}
+			<td><a id="top${account.shareId}" onclick="top_clicked(${account.shareId})" style="cursor: pointer"><b>${account.top}</b><i class="icon-thumbs-up"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+			<a id="down${account.shareId}" onclick="down_clicked(${account.shareId})" style="cursor: pointer"><b>${account.down}</b><i class="icon-thumbs-down"></i></a></td>
+		</tr>
+		 #{/list}
+
+	</table>
+	#{/if}
+	<div id="shareContent">
+	<legend>
+		<small>分享帐号</small>
+	</legend>
+	<form class="form-inline" action="@{Application.add}" method="post"
+		accept-charset="utf-8"><p>网址:
+	#{if website} <code><a href='http://${website.url}/'>${website.url}</a></code> 
+	<input type="hidden" name="webId" value="${website.webId}">
+	<input type="hidden" name="url" value="${website.url}">
+	#{/if}
+	#{else}
+	<code>${keyword}</code>
+	<input type="hidden" name="url" value="${keyword}">
+	#{/else}
+	 &nbsp; &nbsp;
+		<input type="text" id="majiaID" name="majiaID" value="${flash.majiaID}"class="input-large" placeholder="马甲帐号"> <input
+			type="text" id="majiaPwd" name="majiaPwd" value="${flash.majiaPwd}" class="input-large" placeholder="密码"> <label
+			class="checkbox">
+		</label>
+		<button type="submit" class="btn">分享吧</button>
+		&nbsp;&nbsp;
+		#{if
+										flash?.error} <code><span >${flash.error} </span></code>#{/if}
+										#{if flash?.success}<code><span>
+										${flash.success} </span></code>#{/if}
+
+	</form>
+	</div>
+</div>
