@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import play.db.jpa.GenericModel;
 import util.Account;
+import util.Web;
 
 /**
  * 匿名(公共)分享
@@ -71,7 +72,27 @@ public class Share extends GenericModel {
 		s.deleteMark = 1;
 		s.save();
 	}
-
+	/**
+	 * 获取前200多马甲的 Webs
+	 * @author keepcleargas
+	 * @Date：   2012-10-26
+	 * @return
+	 */
+	public static List<Web> getAvailableWebs(){
+		List<Web> webs = new ArrayList<Web>();
+		List<Object[]> items = find("select w.webName ,w.url ,count(url) as c from Share s ,Website w where s.website.webId = w.webId and s.deleteMark = 0 group by url order by c desc").fetch(30);
+		for (Object[] rows : items) {
+			String webName = (String)rows[0];
+			String url =(String)rows[1];
+			long count =(long)rows[2];
+			Web web = new Web();
+			web.setUrl(url);
+			web.setWebName(webName);		
+			web.setCount(count);
+			webs.add(web);
+		}
+		return webs;
+	}
 	/**
 	 * 判断是否已经存咋记录
 	 * @author keepcleargas

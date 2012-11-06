@@ -1,19 +1,53 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-        <title>Not found</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=${_response_encoding}"/>    
-    </head>
-    <body>
-        #{if play.mode.name() == 'DEV'}
-            #{404 result /}
-        #{/if}
-        #{else}
-            <h1>Not found</h1>
-            <p>
-                ${result.message}
-            </p>
-        #{/else}
-    </body>
+#{extends 'main.html' /} #{set title:'Page NotFound' /}
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/404.css'}">
+<body>
+	#{if play.mode.name() == 'DEV'}
+	#{404 result /} #{/if} #{else}
+		<div class="container_content">
+		<div id="content" class="container">
+			<div class="row-fluid">
+				<div class="mod span8" id="pattern">
+					<h3 class="label">Page NotFound</h3>
+					<hr>
+					<div class="WxEditableArea">
+						<div class="well">
+							<h1>Ooops!</h1>
+							<p>
+								你访问的页面不存在.
+							</p>
+							<h3>
+							元芳,不知此事,你怎么看?
+								</h3>
+						</div>
+						<br> <br> <br><br>
+				</div>
+				</div>				
+				<div class="span4 well">
+					<div class="WxEditableSidebar">
+						<div style="margin-bottom: 50px;">
+							<ol class="tags unstyled">
+								<li><a title="首页" href="/"><span class="meta">--></span>首页</a></li>
+								<li><a title="添加马甲"
+									href="/add"><span class="meta">--></span>添加马甲</a></li>
+								<li><a title="马甲广场" href="/plaza"><span class="meta">--></span>马甲广场</a></li>
+								<li><a title="使用帮助" href="/tutorial"><span class="meta">--></span>使用帮助</a></li>
+								<li><a title="联系我们" href="/aboutUs"><span class="meta">--></span>联系我们</a></li>
+							</ol>
+						</div>
+						<hr>
+						<div class="portlet" id="pw_14491">
+							<h3>&nbsp;&nbsp;马甲号网</h3>
+						</div>
+						<div style="top: 0px; left: 0px; position: relative;"
+							class="portlet" id="pw_63494">
+							<p>&nbsp;&nbsp;&nbsp;&nbsp;寻找和分享马甲的好去处!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	#{/else}
+</body>
 </html>

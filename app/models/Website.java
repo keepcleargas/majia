@@ -39,6 +39,7 @@ public class Website extends GenericModel{
 	public long ref; //母网站 ID -1:主 0:未设置 >0子网站
 	public int available; //是否有效的网址
 	public int closed;    //是否可以被搜索到
+	public int locked;      //0:可编辑 1:不可编辑
     @ManyToMany
     @JoinTable(name="r_website_category",joinColumns = { 
 			@JoinColumn(name = "web_id") }, 
@@ -80,7 +81,7 @@ public class Website extends GenericModel{
     	}
     	return webs;
     }
-    public static Website findByWebName(String keyword){
+    public static Website findByUrl(String keyword){
     	return (Website)find("url",keyword).first();
     }
 	@Override

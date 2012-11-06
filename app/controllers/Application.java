@@ -5,6 +5,7 @@ import play.data.validation.Required;
 import play.mvc.*;
 import util.Account;
 import util.URLHelper;
+import util.Web;
 
 import java.util.*;
 
@@ -26,7 +27,9 @@ public class Application extends Controller {
 
 	/**   马甲广场    **/
 	public static void plaza(){
-		render();
+		List<Web> webs = new ArrayList<Web>();
+		webs  = Share.getAvailableWebs();
+		render(webs);
 	}
 	public static void search(@Required String keyword) {
 		if (validation.hasErrors()) {
@@ -44,7 +47,7 @@ public class Application extends Controller {
 	}
 
 	public static void view(String keyword) {
-		Website website = Website.findByWebName(keyword);
+		Website website = Website.findByUrl(keyword);
 		if (website == null) {
 			render(keyword);
 		} else {
@@ -77,6 +80,18 @@ public class Application extends Controller {
 		return "success";
 	}
 
+	public static String modifyWebsite(String url,String webName,String des){
+		if(webName.trim() ==""){
+			return "WEBNAME_IS_BLANK";
+		}else if(webName.trim().length()>10){
+			return "WEBNAME_IS_TOO_LONG";
+		}
+		Website web = Website.findByUrl(url);
+		web.webName = webName;
+		web.description = des;
+		web.save();
+		return "success";
+	}
 	public static void AddMaJia(@Required String url, @Required String majiaID,
 	        @Required String majiaPwd) {
 		if (validation.hasErrors()) {
@@ -96,7 +111,7 @@ public class Application extends Controller {
 			flash.error("密码须小于50位");
 			view(newUrl);
 		}
-		Website website = Website.findByWebName(newUrl);
+		Website website = Website.findByUrl(newUrl);
 		if (website == null) {
 			website = new Website(newUrl);
 			new Share(majiaID, majiaPwd, website);
