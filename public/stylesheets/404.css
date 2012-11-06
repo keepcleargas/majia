@@ -1,0 +1,40 @@
+ol.tags li a {
+	display: block;
+	padding: 4px 20px;
+	color: #333333;
+	}
+ol.tags li a span.meta {
+	float: right;
+	color: #bbb;
+	}
+ol.tags li a:hover {
+	background: #f0f0f0;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	}	
+div.mod h3.label {
+    background: none repeat scroll 0 0 #A1CF32;
+    border-radius: 0 4px 4px 0;
+    color: #FFFFFF;
+    float: left;
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin: 0 0 10px -20px;
+    padding: 6px 10px;
+    text-transform: uppercase;
+}
+div#pattern.mod {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.6);
+    float: left;
+    width: 65%;
+}
+div.mod {
+    -moz-box-sizing: border-box;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    margin: 0 0 20px;
+    padding: 20px;
+}
