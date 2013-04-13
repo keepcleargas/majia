@@ -1,20 +1,12 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
 import play.db.jpa.GenericModel;
 import util.Account;
 import util.Web;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 匿名(公共)分享
@@ -84,7 +76,7 @@ public class Share extends GenericModel {
 		for (Object[] rows : items) {
 			String webName = (String)rows[0];
 			String url =(String)rows[1];
-			long count =(long)rows[2];
+			long count =(Long)rows[2];
 			Web web = new Web();
 			web.setUrl(url);
 			web.setWebName(webName);		
@@ -137,14 +129,14 @@ public class Share extends GenericModel {
 		        .find("select s.shareId,s.username,s.password,s.top,s.down,s.top*1.0f/((s.top)+(s.down)) as rate from Share s where s.website.webId=? and s.deleteMark=0 order by rate desc",
 		                webId).fetch(20);
 		for (Object[] rows : items) {
-			long shareId = (long) rows[0];
+			long shareId = (Long) rows[0];
 			String username = (String) rows[1];
 			String password = (String) rows[2];
-			int top = (int) rows[3];
-			int down = (int) rows[4];
+			int top = (Integer) rows[3];
+			int down = (Integer) rows[4];
 			float rate = 0.0f;
 			if (rows[5] != null) {
-				rate = (float) rows[5];
+				rate = (Float) rows[5];
 			}
 
 			Account account = new Account();
