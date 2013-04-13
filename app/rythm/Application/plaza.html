@@ -1,0 +1,74 @@
+@extends(main, title: "马甲广场") 
+<link rel="stylesheet" media="screen"
+	href='@url("/public/stylesheets/plaza.css")'>
+<div class="container">
+	<div class="mod" id="pattern">
+		<h3 class="label">入驻马甲</h3>
+		<hr>
+		<div class="row-fluid">
+			#{if webs.size()}
+			#{list items:webs,as:'web'}
+				#{if web_index==1}
+					<div class="span4" id="pattern-wrap">
+					<ol class="tags unstyled">
+					#{displayWeb web:web/}
+				#{/if}
+				#{elseif web_index%10==0&&!web_isLast}
+				#{displayWeb web:web/}
+					</ol>
+					</div>
+					<div class="span4" id="pattern-wrap">
+					<ol class="tags unstyled">
+				#{/elseif}
+				#{elseif web_isLast}
+					#{displayWeb web:web/}
+					</ol>
+					</div>
+				#{/elseif}
+				#{else}
+				#{displayWeb web:web/}
+				#{/else}
+			#{/list}
+			#{/if}
+			<!-- 
+					<li><a href="#"><span class="meta">123</span> cheddar</a></li>
+					<li><a href="#"><span class="meta">34</span> swiss</a></li>
+					<li><a href="#"><span class="meta">1,234</span> havarti</a></li>
+					<li><a href="#"><span class="meta">8</span> gouda</a></li>
+					<li><a href="#"><span class="meta">56</span> manchego</a></li>
+					<li><a href="#"><span class="meta">123</span> cheddar</a></li>
+					<li><a href="#"><span class="meta">34</span> swiss</a></li>
+					<li><a href="#"><span class="meta">1,234</span> havarti</a></li>
+					<li><a href="#"><span class="meta">8</span> gouda</a></li>
+					<li><a href="#"><span class="meta">56</span> manchego</a></li>
+					<li><a href="#"><span class="meta">123</span> cheddar</a></li>
+					<li><a href="#"><span class="meta">34</span> swiss</a></li>
+					<li><a href="#"><span class="meta">1,234</span> havarti</a></li>
+					<li><a href="#"><span class="meta">8</span> gouda</a></li>
+					<li><a href="#"> manchego    <span class="meta">56</span></a></li>
+				</ol>
+			</div>
+			<div class="span5" id="pattern-wrap">
+				<ol class="tags unstyled">
+					<li><a href="#"><span class="meta">123</span> cheddar</a></li>
+					<li><a href="#"><span class="meta">34</span> swiss</a></li>
+					<li><a href="#"><span class="meta">1,234</span> havarti</a></li>
+					<li><a href="#"><span class="meta">8</span> gouda</a></li>
+					<li><a href="#"><span class="meta">56</span> manchego</a></li>
+					<li><a href="#"><span class="meta">123</span> cheddar</a></li>
+					<li><a href="#"><span class="meta">34</span> swiss</a></li>
+					<li><a href="#"><span class="meta">1,234</span> havarti</a></li>
+					<li><a href="#"><span class="meta">8</span> gouda</a></li>
+					<li><a href="#"><span class="meta">56</span> manchego</a></li>
+					<li><a href="#"><span class="meta">123</span> cheddar</a></li>
+					<li><a href="#"><span class="meta">34</span> swiss</a></li>
+					<li><a href="#"><span class="meta">1,234</span> havarti</a></li>
+					<li><a href="#"><span class="meta">8</span> gouda</a></li>
+					<li><a href="#"> manchego    <span class="meta">56</span></a></li>
+				</ol>
+			</div>
+			 -->
+		</div>
+
+	</div>
+</div>

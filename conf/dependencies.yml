@@ -2,3 +2,11 @@
 
 require:
     - play
+    - com.gelinsoft -> play-rythm 1.0-b5t
+    
+repositories:
+    - gelinsoft:
+        type: http
+        artifact: "http://gelinsoft.com/play/repo/[module]-[revision].zip"
+        contains:
+            - com.gelinsoft -> *
